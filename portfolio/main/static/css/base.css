@@ -1,0 +1,5 @@
+/* Add this to your CSS file */
+.selected-tag {
+    background-color: blue;
+    color: white; /* Optional: to ensure the text is readable */
+}
