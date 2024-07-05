@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Project, Tag
+from .models import Project, Tag, Experience, Education
 
 # Create your views here.
 
@@ -10,10 +10,12 @@ def contact(request):
     return render(request, "contact.html")
 
 def experience_view(request):
-    return render(request, 'experience.html')
+    experiences = Experience.objects.all()
+    education_list = Education.objects.all()
+    return render(request, 'experience.html', {'experiences': experiences, 'education_list': education_list})
 
 def projectlist(request):
-    projects = Project.objects.all()
+    projects = Project.objects.prefetch_related('images').all()
     tags = Tag.objects.all()
     return render(request, 'projectlist.html', {'projects': projects, 'tags': tags})
 

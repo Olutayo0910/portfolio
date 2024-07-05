@@ -62,10 +62,13 @@
         .box {
             max-width: 150px;
             height: 100px;
+            background-color: white;
+            border-color: gray;
         }
         .box-2 {
             max-width: 300px;
             height: 350px;
+            
         }
         body {
             font-family: "Roboto", sans-serif;
@@ -76,7 +79,7 @@
 <body class="text-white p-12">
     <header class="container mx-auto mb-12 p-5 flex justify-between items-center max-w-6xl mt-12">
         <div>
-            <span class="text-xl font-bold">olu'Victor</span>
+            <a href="/"><span class="text-xl font-bold">olu'Victor</span></a>
         </div>
         <button id="menu-button" class="p-2 border border-white rounded hover:bg-gray-700">
             <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +88,7 @@
         </button>
         <nav id="menu" class="hidden-nav">
             <a href="/about" class="hover:text-gray-400">About Me</a>
-            <a href="/project" class="hover:text-gray-400">Projects</a>
+            <a href="/projectlist" class="hover:text-gray-400">Projects</a>
             <a href="/contact" class="hover:text-gray-400">Contact</a>
         </nav>
     </header>
@@ -140,17 +143,37 @@
             <section class="professional-experience mt-24">
                 <div class="container mx-auto max-w-4xl">
                     <h2 class="text-3xl font-bold mb-6">Professional Experience</h2>
+                    
+                    {% for experience in experiences %}
                     <div class="experience-item mb-8">
-                        <h3 class="text-2xl font-semibold">Full Stack Developer</h3>
-                        <p class="italic">TAY & BECCA SERVICES</p>
-                        <p class="text-gray-400">Dec 2022 - Jun 2024</p>
+                        <h3 class="text-2xl font-semibold">{{ experience.job_title }}</h3>
+                        <p class="italic">{{ experience.company_name }}</p>
+                        <p class="text-gray-400">{{ experience.start_date }} - {% if experience.end_date %}{{ experience.end_date }}{% else %}Present{% endif %}</p>
+                        
                         <ul class="list-disc list-inside mt-4">
-                            <li>Developed a job application that connects casual job seekers with potential job givers. This platform includes user authentication, job posting and searching functionalities, and real-time notifications.</li>
-                            <li>Developed a comprehensive project management tool that integrates with various third-party APIs, enhancing team collaboration and productivity.</li>
-                            <li>Created an e-commerce platform from scratch, including payment gateway integration and real-time inventory management.</li>
-                            <li>Created a dynamic blog application using Flask that allows users to create, edit, and delete posts, comment on articles, and manage user profiles.</li>
+                            {% for point in experience.get_description_as_list %}
+                            <li>{{ point }}</li>
+                            {% endfor %}
                         </ul>
                     </div>
+                    {% endfor %}
+                    
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="education mt-24">
+                <div class="container mx-auto max-w-4xl border-t border-gray-300">
+                    <h2 class="text-3xl pt-8 font-bold mb-6">Education</h2>
+                    
+                    {% for education in education_list %}
+                    <div class="education-item mb-8">
+                        <h3 class="text-2xl font-semibold">{{ education.certificate_title }}</h3>
+                        <p class="italic">{{ education.school_name }}</p>
+                        <p class="text-gray-400">{{ education.start_date }} - {% if education.end_date %}{{ education.end_date }}{% else %}Present{% endif %}</p>
+                        <p class="text-white">{{ education.description }}</p>
+                    </div>
+                    {% endfor %}
                 </div>
             </section>
         </div>
