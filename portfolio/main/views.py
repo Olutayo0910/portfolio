@@ -4,12 +4,20 @@ from .models import Project, Tag
 # Create your views here.
 
 def home(request):
-    projects = Project.objects.all()
-    tags = Tag.objects.all()
-    return render(request, "home.html", {'projects': projects, 'tags': tags})
+    return render(request, "home.html")
 
 def contact(request):
     return render(request, "contact.html")
 
+def experience_view(request):
+    return render(request, 'experience.html')
+
+def projectlist(request):
+    projects = Project.objects.all()
+    tags = Tag.objects.all()
+    return render(request, 'projectlist.html', {'projects': projects, 'tags': tags})
+
 def project(request, id):
-    return render(request, "project.html")
+    project = get_object_or_404(Project, pk=id)
+    return render(request, "project.html", {'project': project})
+

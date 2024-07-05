@@ -1,6 +1,25 @@
-{% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+Project page
+{% endblock title %} 
+
 {% block content %}
-    <h2>This is the project page</h2>
+    <div>
+        <div>
+            <h1>{{project.title}}</h1>
+            <p><a href="{{project.link}}">Project link</a></p>
+            <p>{{project.description}}</p>
+            <a href="{% url 'home' %}">Back to home</a>
+        </div>
+        <div>
+            <div>
+                {% for image in project.images.all %}
+                    <div>
+                        <img src="{{image.image.url}}" alt="project-image"/>
+                    </div>
+                    {% endfor  %}
+            </div>
+        </div>
+    </div>
 {% endblock content %} 

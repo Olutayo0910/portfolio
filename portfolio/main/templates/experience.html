@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        .triangle-bg {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1400" viewBox="0 0 100 100"><polygon points="-50,30 -50,0 100,0 80,50" fill="%23A9A9A9"/><polygon points="50,30 50,0 -100,0 -80,50" fill="%23000"/></svg>');
+            
+        }
+        .partial-border {
+            position: relative;
+            border: 2px solid;
+            border-image-slice: 1;
+        }
+        .animated-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .title {
+            font-family: "Irish Grover", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .subtitle {
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+        }
+        .fixed-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .hidden-nav {
+            display: none;
+        }
+        .visible-nav {
+            display: flex;
+            flex-direction: column;
+        }
+       
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .box {
+            max-width: 150px;
+            height: 100px;
+        }
+        .box-2 {
+            max-width: 300px;
+            height: 350px;
+        }
+        body {
+            font-family: "Roboto", sans-serif;
+            background-color: black;
+        }
+    </style>
+</head>
+<body class="text-white p-12">
+    <header class="container mx-auto mb-12 p-5 flex justify-between items-center max-w-6xl mt-12">
+        <div>
+            <span class="text-xl font-bold">olu'Victor</span>
+        </div>
+        <button id="menu-button" class="p-2 border border-white rounded hover:bg-gray-700">
+            <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path id="menu-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+        <nav id="menu" class="hidden-nav">
+            <a href="/about" class="hover:text-gray-400">About Me</a>
+            <a href="/project" class="hover:text-gray-400">Projects</a>
+            <a href="/contact" class="hover:text-gray-400">Contact</a>
+        </nav>
+    </header>
+
+    <main class="py-8">
+        <div class="container mx-auto max-w-6xl min-h-screen">
+            <section class="experience flex flex-wrap justify-center items-center mx-auto justify-between max-w-4xl">
+                <div class="sm:flex-2 md:flex-3 grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-4 max-w-full relative md:max-w-6xl">
+                    <div class="box p-2 border flex justify-center items-center">
+                        <img src="{% static 'images/oper.png' %}" alt="opera logo" class="max-h-full max-w-full"/>
+                    </div>
+                    <div class="box p-2 border flex justify-center items-center">
+                        <img src="{% static 'images/richbon.png' %}" alt="opera logo" class="max-h-full max-w-full"/>
+                    </div>
+                    <div class="box p-2 border flex justify-center items-center">
+                        <img src="{% static 'images/startsyn.png' %}" alt="opera logo" class="max-h-full max-w-full"/>
+                    </div>
+                    <div class="box p-2 border flex justify-center items-center">
+                        <img src="{% static 'images/saro.png' %}" alt="opera logo" class="max-h-full max-w-full"/>
+                    </div>
+                    <div class="box p-2 border flex justify-center items-center">
+                        <img src="{% static 'images/tabs-logo1.png' %}" alt="opera logo" class="max-h-full max-w-full"/>
+                    </div>
+                    <div class="box p-2 border flex justify-center items-center">
+                        <img src="{% static 'images/opay.png' %}" alt="opera logo" class="max-h-full max-w-full"/>
+                    </div>
+                </div>
+                <div class="sm: ml-2 flex-1 box-2 p-4 mt-4 border">
+                    <div class="flex mb-4">
+                        <div class="mr-4">
+                            <span class="text-green-400 font-bold text-9xl">10</span>
+                        </div>
+                        <div class="mt-8 font-bold">
+                            <p>Years</p>
+                            <p>Experience</p>
+                            <p>Working</p>
+                        </div>
+                    </div>
+                    <div class="sm: flex-1 ml-4 mt-12 justify-center items-center flex">
+                        <div>
+                            <p><i class="mr-4 text-4xl fa-solid fa-envelope"></i></p>
+                        </div>
+                        <div class="break-all">
+                            <p>SEND A MAIL NOW</p>
+                            <p>olutayoogunlade2022@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Professional Experience Section -->
+            <section class="professional-experience mt-24">
+                <div class="container mx-auto max-w-4xl">
+                    <h2 class="text-3xl font-bold mb-6">Professional Experience</h2>
+                    <div class="experience-item mb-8">
+                        <h3 class="text-2xl font-semibold">Full Stack Developer</h3>
+                        <p class="italic">TAY & BECCA SERVICES</p>
+                        <p class="text-gray-400">Dec 2022 - Jun 2024</p>
+                        <ul class="list-disc list-inside mt-4">
+                            <li>Developed a job application that connects casual job seekers with potential job givers. This platform includes user authentication, job posting and searching functionalities, and real-time notifications.</li>
+                            <li>Developed a comprehensive project management tool that integrates with various third-party APIs, enhancing team collaboration and productivity.</li>
+                            <li>Created an e-commerce platform from scratch, including payment gateway integration and real-time inventory management.</li>
+                            <li>Created a dynamic blog application using Flask that allows users to create, edit, and delete posts, comment on articles, and manage user profiles.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('menu');
+            var menuIcon = document.getElementById('menu-icon');
+            var menuPath = document.getElementById('menu-path');
+
+            if (menu.classList.contains('hidden-nav')) {
+                menu.classList.remove('hidden-nav');
+                menu.classList.add('visible-nav');
+                menuPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            } else {
+                menu.classList.remove('visible-nav');
+                menu.classList.add('hidden-nav');
+                menuPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            }
+        });
+    </script>
+</body>
+</html>
