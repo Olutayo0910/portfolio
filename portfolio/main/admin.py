@@ -4,12 +4,14 @@ from .models import Tag, ProjectImage, Project, Experience, Education
 class ProjectImageInline(admin.TabularInline):
     model = ProjectImage
     extra = 1
+    fields = ['images']  # Only images field
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ("title", "link")
     inlines = [ProjectImageInline]
     search_fields = ("title", "description")
     list_filter = ("tags",)
+    fields = ['title', 'description', 'tags', 'link', 'logo']  # Include logo field in the main form
 
 class TagAdmin(admin.ModelAdmin):
     list_display = ("name",)
@@ -47,10 +49,13 @@ class EducationAdmin(admin.ModelAdmin):
         }),
     )
 
+class ProjectImageAdmin(admin.ModelAdmin):
+    list_display = ("project", "images")  # Only images field
+    search_fields = ("project__title",)
+    list_filter = ("project",)
+
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Experience, ExperienceAdmin)
 admin.site.register(Education, EducationAdmin)
-admin.site.register(ProjectImage)  # Register ProjectImage independently
-
-# Register your models here.
+admin.site.register(ProjectImage, ProjectImageAdmin)  # Register ProjectImage with its own admin

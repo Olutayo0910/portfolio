@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseBadRequest
 from .models import Project, Tag, Experience, Education
+import random
 
 # Create your views here.
 
@@ -40,8 +41,13 @@ def experience_view(request):
     return render(request, 'experience.html', {'experiences': experiences, 'education_list': education_list})
 
 def projectlist(request):
-    projects = Project.objects.prefetch_related('images').all()
+    # Fetch all projects and prefetch related images
+    projects = list(Project.objects.prefetch_related('images').all())
+    # Shuffle the list of projects randomly
+    random.shuffle(projects)
+    # Fetch all tags (if needed)
     tags = Tag.objects.all()
+    # Pass shuffled projects and tags to the template
     return render(request, 'projectlist.html', {'projects': projects, 'tags': tags})
 
 def project(request, id):
