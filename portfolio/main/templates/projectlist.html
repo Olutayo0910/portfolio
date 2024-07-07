@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+       @import url('https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Irish+Grover&display=swap');
         .triangle-bg {
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1400" viewBox="0 0 100 100"><polygon points="-50,30 -50,0 100,0 80,50" fill="%23A9A9A9"/><polygon points="50,30 50,0 -100,0 -80,50" fill="%23000"/></svg>');
         }
@@ -100,26 +100,23 @@
             <input type="text" id="name-search" placeholder="Search by name.." class="w-full p-2 border rounded mb-4"/>
             <div class="tags-list flex flex-wrap gap-2">
                 {% for tag in tags %}
-                <button class="tag bg-gray-200 text-black px-4 py-2 rounded" data-tag="{{ tag.name|lower }}">{{ tag.name }}</button>
+                <button class="tag bg-gray-200 hover:bg-blue-300 text-black px-4 py-2 rounded" data-tag="{{ tag.name|lower }}">{{ tag.name }}</button>
                 {% endfor %}
             </div>
         </div>
         <div class="projects-list">
             {% for project in projects %}
-            <div class="project flex justify-between p-12 border rounded mb-6 shadow {% cycle 'bg-yellow-50' 'bg-blue-100' 'bg-blue-100' %}" data-name="{{ project.title|lower }}" data-tags="{{ project.tags.all|join:', '|lower }}">
+            <a href="{% url 'project' project.id %}" class="block project flex justify-between p-12 border rounded mb-6 shadow {% cycle 'bg-yellow-50' 'bg-blue-100' 'bg-blue-100' %} hover:bg-blue-200 transition-colors duration-300" data-name="{{ project.title|lower }}" data-tags="{{ project.tags.all|join:', '|lower }}">
                 <div>
-                    <h2 class="text-2xl font-bold mb-2">
-                        <a href="{% url 'project' project.id %}" class="">{{ project.title }}</a>
-                    </h2>
-                    <p class="">Tags: {{ project.tags.all|join:', ' }}</p>
+                    <h2 class="text-2xl font-bold mb-2">{{ project.title }}</h2>
+                    <p>Tags: {{ project.tags.all|join:', ' }}</p>
                 </div>
-                    <div>
-                        {% for image in project.images.all %}
-                            <img src="{{ image.images.url }}" alt="{{ project.title }} Image" style="max-width: 100px;">
-                        {% endfor %}
-                    </div>
-                
-            </div>
+                <div>
+                    {% for image in project.images.all %}
+                        <img src="{{ image.images.url }}" alt="{{ project.title }} Image" style="max-width: 100px;">
+                    {% endfor %}
+                </div>
+            </a>
             {% endfor %}
         </div>
         
