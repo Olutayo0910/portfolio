@@ -75,6 +75,12 @@
             background-color: white;
             color: black;
         }
+        .contact-title {
+            font-family: "Irish Grover", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+    
         
     </style>
 </head>
@@ -186,6 +192,33 @@
             </section>
         </div>
     </main>
+
+    <section id="contact" class="contact-section mt-24 w-full">
+        <div class="max-w-2xl p-4 md:p-12 mt-12 mx-auto flex flex-col items-center justify-center">
+            <div class="contact-title text-3xl mb-8">Get in Touch - {{ message_name }}</div>
+            <form action="{% url 'home' %}" method="POST" class="w-full max-w-lg">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <input class="appearance-none bg-transparent border-b border-gray-500 w-full py-2 px-4 text-white leading-tight focus:outline-none focus:border-white" name="message-name" type="text" placeholder="Your Name">
+                </div>
+                <div class="mb-4">
+                    <input class="appearance-none bg-transparent border-b border-gray-500 w-full py-2 px-4 text-white leading-tight focus:outline-none focus:border-white" name="message-email" type="email" placeholder="Your Email">
+                </div>
+                <div class="mb-4">
+                    <textarea class="appearance-none bg-transparent border-b border-gray-500 w-full py-2 px-4 text-white leading-tight focus:outline-none focus:border-white" name="message" placeholder="Talk to me"></textarea>
+                </div>
+                <div class="mt-8">
+                    <button class="bg-transparent text-white border border-white py-2 px-4 hover:bg-white hover:text-black" type="submit">Okay!</button>
+                </div>
+            </form>
+            {% if message_name %}
+                <h2>Thanks {{ message_name}}</h2>
+                <p> We received your message</p>
+            {% else %}
+            {% endif %}
+        </div>
+        
+    </section>
 
     <script>
         document.getElementById('menu-button').addEventListener('click', function() {
