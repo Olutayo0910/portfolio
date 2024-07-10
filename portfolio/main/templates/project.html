@@ -7,6 +7,7 @@
     <title>{% block title %}Portfolio - Project Details{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Irish+Grover&display=swap');
         .title {
@@ -26,7 +27,7 @@
     </style>
 </head>
 <body class="bg-black text-white p-12" style="margin: 0; padding: 0;">
-    <div class="w-full mx-auto min-h-screen">
+    <div class="w-full mx-auto">
         <header class="container mx-auto mb-12 mx-auto p-5 flex justify-between items-center max-w-6xl mt-12">
             <div>
                 <a href="/"><span class="text-xl font-bold">olu'Victor</span></a>
@@ -37,9 +38,10 @@
                 </svg>
             </button>
             <nav id="menu" class="hidden-nav">
+                <a href="{% url 'home' %}#about" class="hover:text-gray-400">About Me</a>
                 <a href="{% url 'projectlist' %}" class="hover:text-gray-400">Projects</a>
-                <a href="{% url 'experience' %}" class="hover:text-gray-400">Experience</a>
-                <a href="{% url 'contact' %}" class="hover:text-gray-400">Contact</a>
+                <a href="{% url 'experience' %}" class="hover:text-gray-400">Resume</a>
+                <a href="{% url 'contact' %}#contact" class="hover:text-gray-400">Contact</a>
             </nav>
         </header>
         <main class="container mx-auto max-w-2xl">
@@ -76,8 +78,27 @@
                 <div class="mb-4">
                     <textarea class="appearance-none bg-transparent border-b border-gray-500 w-full py-2 px-4 text-white leading-tight focus:outline-none focus:border-white" name="message" placeholder="Talk to me"></textarea>
                 </div>
-                <div class="mt-8">
-                    <button class="bg-transparent text-white border border-white py-2 px-4 hover:bg-white hover:text-black" type="submit">Okay!</button>
+                <div class="flex justify-between mt-8">
+                    <div>
+                        <button class="bg-transparent text-white border border-white py-2 px-4 hover:bg-white hover:text-black" type="submit">Okay!</button>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com" target="_blank" class="flex items-center justify-center w-10 h-10 border border-white text-white hover:bg-blue-700 transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="flex items-center justify-center w-10 h-10 border border-white  text-white hover:bg-blue-500 transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="flex items-center justify-center w-10 h-10 border border-white text-white hover:bg-pink-600 transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="flex items-center justify-center w-10 h-10 border border-white text-white hover:bg-blue-800 transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="flex items-center justify-center w-10 h-10 border border-white text-white hover:bg-gray-900 transition duration-300">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
                 </div>
             </form>
             {% if message_name %}
@@ -89,11 +110,20 @@
         
     </section>
     <script>
-        // JavaScript to toggle menu
-        document.getElementById('menu-button').addEventListener('click', function () {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('hidden-nav');
-            menu.classList.toggle('visible-nav');
+        document.getElementById('menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('menu');
+            var menuIcon = document.getElementById('menu-icon');
+            var menuPath = document.getElementById('menu-path');
+
+            if (menu.classList.contains('hidden-nav')) {
+                menu.classList.remove('hidden-nav');
+                menu.classList.add('visible-nav');
+                menuPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            } else {
+                menu.classList.remove('visible-nav');
+                menu.classList.add('hidden-nav');
+                menuPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            }
         });
     </script>
 </body>

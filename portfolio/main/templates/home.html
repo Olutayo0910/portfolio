@@ -7,6 +7,7 @@
     <title>{% block title %}Portfolio - Home{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Irish+Grover&display=swap');
         .partial-border {
@@ -87,10 +88,10 @@
                 </svg>
             </button>
             <nav id="menu" class="hidden-nav">
-                <a href="/about" class="hover:text-gray-400">About Me</a>
+                <a href="/#about" class="hover:text-gray-400">About Me</a>
                 <a href="/projectlist" class="hover:text-gray-400">Projects</a>
-                <a href="/experience" class="hover:text-gray-400">Experience</a>
-                <a href="/contact" class="hover:text-gray-400">Contact</a>
+                <a href="/experience" class="hover:text-gray-400">Resume</a>
+                <a href="/#contact" class="hover:text-gray-400">Contact</a>
             </nav>
         </header>
     
@@ -137,21 +138,42 @@
             </section>
         </main>
     </div>
+    <section id="project" class="contact-section text-black bg-white absolute w-full min-h-screen" style="top: 200vh;">
+        <div class="max-w-2xl p-4 md:p-12 mt-12 mx-auto flex flex-col items-center justify-center">
+            <div class="title text-3xl mb-8">Selected Projects</div>
+            <div class="projects-list">
+                {% for project in projects|slice:":2" %}
+                <a href="{% url 'project' project.id %}" class="block project flex justify-between p-12 border rounded mb-6 shadow {% cycle 'bg-yellow-50' 'bg-blue-100' 'bg-blue-100' %} hover:bg-blue-200 transition-colors duration-300" data-name="{{ project.title|lower }}" data-tags="{{ project.tags.all|join:', '|lower }}">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2">{{ project.title }}</h2>
+                        <p>Tags: {{ project.tags.all|join:', ' }}</p>
+                    </div>
+                    <div>
+                        <div>
+                        {% if project.logo %}
+                            <img src="{{ project.logo.url }}" alt="{{ project.title }} Logo" style="max-width: 100px;">
+                        {% endif %}
+                    </div>
+                    </div>
+                </a>
+            {% endfor %}
+            <a href="/projectlist"><button class="bg-white text-black border border-black py-2 px-8 mt-4 hover:bg-gray-300">SEE MORE</button></a>
+            </div>
+        </div>
 
-    <section id="about" class="about-section bg-black absolute w-full min-h-screen" style="top: 100vh;">
-        <div class="max-w-2xl mt-12 mx-auto flex flex-col items-center justify-center">
+    <section id="about" class="about-section bg-black absolute w-full" style="top: 100vh;">
+        <div class="max-w-2xl mt-12 text-white mx-auto flex flex-col items-center justify-center">
             <div class="subtitle p-4 md:p-12">
                 <p class="mb-4">Olutayo Victor Ogunlade is a seasoned full stack software engineer and the visionary founder and CEO of Tay & Becca Services. Starting his career as a sales executive and advancing to sales director, Olutayo developed innovative sales strategies and co-authored "What Your Customer Wants to Hear." His expertise extends to technology, where he has created various software products like Flexiwork, Casjobs, and AI Blog Generator, all aimed at enhancing business efficiency and productivity.</p>
                 <p class="mb-4">Driven by a passion for technology, Olutayo self-taught himself software engineering and earned a certificate in full stack software engineering from ALX Africa. This unique blend of skills allows him to leverage technology to streamline business operations and boost sales. Olutayo is a firm believer in the transformative power of artificial intelligence, viewing it as a powerful tool for productivity rather than a competitor. His forward-thinking perspective on AI and its role in the future of work is a recurring theme in the many blog articles he has written.</p>
                 <p>What sets Olutayo apart is his holistic approach to technology, stemming from his rich background in sales and business management. He trains individuals in business strategies, personal development, and tech skills, making him a sought-after mentor. Balancing his professional endeavors with personal commitments, Olutayo is married and a proud father. His journey from sales to technology, and his innovative use of AI, positions him as a unique leader in the tech industry, driving both business success and technological advancement through Tay & Becca Services.</p>
             </div>
-            <button class="bg-black text-white border border-white p-4 mt-4 hover:bg-gray-300">GET IN TOUCH</button>
         </div>
     </section>
 
-    <section id="contact" class="contact-section bg-black absolute w-full" style="top: 200vh;">
+    <section id="contact" class="contact-section relative bg-black w-full" style="margin-top: 100vh;">
         <div class="max-w-2xl p-4 md:p-12 mt-12 mx-auto flex flex-col items-center justify-center">
-            <div class="title text-3xl mb-8">Get in Touch - {{ message_name }}</div>
+            <div class="title text-white mt-24 text-3xl mb-8">Get in Touch - {{ message_name }}</div>
             <form action="{% url 'home' %}" method="POST" class="w-full max-w-lg">
                 {% csrf_token %}
                 <div class="mb-4">
@@ -163,9 +185,29 @@
                 <div class="mb-4">
                     <textarea class="appearance-none bg-transparent border-b border-gray-500 w-full py-2 px-4 text-white leading-tight focus:outline-none focus:border-white" name="message" placeholder="Talk to me"></textarea>
                 </div>
-                <div class="mt-8">
-                    <button class="bg-transparent text-white border border-white py-2 px-4 hover:bg-white hover:text-black" type="submit">Okay!</button>
+                <div class="flex justify-between mt-8">
+                    <div>
+                        <button class="bg-transparent text-white border border-white py-2 px-4 hover:bg-white hover:text-black" type="submit">Okay!</button>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com" target="_blank" class="flex items-center justify-center w-10 h-10 border border-white text-white hover:bg-blue-700 transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="flex items-center justify-center w-10 h-10 border border-white  text-white hover:bg-blue-500 transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="flex items-center justify-center w-10 h-10 border border-white text-white hover:bg-pink-600 transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="flex items-center justify-center w-10 h-10 border border-white text-white hover:bg-blue-800 transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="flex items-center justify-center w-10 h-10 border border-white text-white hover:bg-gray-900 transition duration-300">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
                 </div>
+                
             </form>
             {% if message_name %}
                 <h2>Thanks {{ message_name}}</h2>
