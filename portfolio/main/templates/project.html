@@ -38,10 +38,10 @@
                 </svg>
             </button>
             <nav id="menu" class="hidden-nav">
-                <a href="{% url 'home' %}#about" class="hover:text-gray-400">About Me</a>
+                <a href="{% url 'index' %}#about" class="hover:text-gray-400">About Me</a>
                 <a href="{% url 'projectlist' %}" class="hover:text-gray-400">Projects</a>
                 <a href="{% url 'experience' %}" class="hover:text-gray-400">Resume</a>
-                <a href="{% url 'contact' %}#contact" class="hover:text-gray-400">Contact</a>
+                <a href="{% url 'index' %}#contact" class="hover:text-gray-400">Contact</a>
             </nav>
         </header>
         <main class="container mx-auto max-w-2xl">
@@ -59,7 +59,7 @@
                     {% endfor %}
                 </div>
                 <p class="subtitle sm: p-4 text-lg">{{ project.description }}</p>
-                <a href="{% url 'home' %}" class="text-blue-500 hover:text-blue-700 mt-8 sm: p-4 inline-block">Back to home</a>
+                <a href="{% url 'index' %}" class="text-blue-500 hover:text-blue-700 mt-8 sm: p-4 inline-block">Back to Home</a>
             </section>
         </main>
     </div>
@@ -67,7 +67,7 @@
     <section id="contact" class="contact-section mt-24 bg-black w-full">
         <div class="max-w-2xl p-4 md:p-12 mt-12 mx-auto flex flex-col items-center justify-center">
             <div class="title text-3xl mb-8">Get in Touch - {{ message_name }}</div>
-            <form action="{% url 'home' %}" method="POST" class="w-full max-w-lg">
+            <form action="{% url 'index' %}" method="POST" class="w-full max-w-lg">
                 {% csrf_token %}
                 <div class="mb-4">
                     <input class="appearance-none bg-transparent border-b border-gray-500 w-full py-2 px-4 text-white leading-tight focus:outline-none focus:border-white" name="message-name" type="text" placeholder="Your Name">

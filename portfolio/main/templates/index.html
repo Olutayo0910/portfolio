@@ -174,7 +174,7 @@
     <section id="contact" class="contact-section relative bg-black w-full" style="margin-top: 100vh;">
         <div class="max-w-2xl p-4 md:p-12 mt-12 mx-auto flex flex-col items-center justify-center">
             <div class="title text-white mt-24 text-3xl mb-8">Get in Touch - {{ message_name }}</div>
-            <form action="{% url 'home' %}" method="POST" class="w-full max-w-lg">
+            <form action="{% url 'index' %}" method="POST" class="w-full max-w-lg">
                 {% csrf_token %}
                 <div class="mb-4">
                     <input class="appearance-none bg-transparent border-b border-gray-500 w-full py-2 px-4 text-white leading-tight focus:outline-none focus:border-white" name="message-name" type="text" placeholder="Your Name">

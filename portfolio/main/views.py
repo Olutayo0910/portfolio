@@ -6,7 +6,7 @@ import random
 
 # Create your views here.
 
-def home(request):
+def index(request):
     # Fetch all projects and prefetch related images
     projects = list(Project.objects.prefetch_related('images').all())
     # Shuffle the list of projects randomly
@@ -26,7 +26,7 @@ def home(request):
                     from_email=message_email,
                     recipient_list=['olutayoogunlade2022@gmail.com'],
                 )
-                return render(request, "home.html", {
+                return render(request, "index.html", {
                     "message_name": message_name, 
                     "message_email": message_email, 
                     "message": message,
@@ -36,7 +36,7 @@ def home(request):
                 return HttpResponseBadRequest('Invalid header found.')
         else:
             return HttpResponseBadRequest('Ensure all fields are entered and valid.')
-    return render(request, "home.html", {'projects': projects})
+    return render(request, "index.html", {'projects': projects})
 
 def experience_view(request):
     experiences = Experience.objects.all()

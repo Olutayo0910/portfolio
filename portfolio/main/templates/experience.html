@@ -84,7 +84,7 @@
         
     </style>
 </head>
-<body class="toggle-bg p-12">
+<body class="toggle-bg p-12" style="margin: 0; padding: 0;">
     <header class="container mx-auto mb-12 p-5 flex justify-between items-center max-w-6xl mt-12">
         
         <div>
@@ -101,13 +101,13 @@
             </button>
         </div>
         <nav id="menu" class="hidden-nav">
-            <a href="{% url 'home' %}#about" class="hover:text-gray-400">About Me</a>
+            <a href="{% url 'index' %}#about" class="hover:text-gray-400">About Me</a>
             <a href="/projectlist" class="hover:text-gray-400">Projects</a>
-            <a href="{% url 'home' %}#contact" class="hover:text-gray-400">Contact</a>
+            <a href="{% url 'index' %}#contact" class="hover:text-gray-400">Contact</a>
         </nav>
     </header>
 
-    <main class="py-8">
+    <main class="p-4">
         <div class="container mx-auto max-w-6xl min-h-screen">
             <section class="experience flex flex-wrap justify-center items-center mx-auto justify-between max-w-4xl">
                 <div class="sm:flex-2 md:flex-3 grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-4 max-w-full relative md:max-w-6xl">
@@ -130,7 +130,7 @@
                         <img src="{% static 'images/opay.png' %}" alt="opera logo" class="max-h-full max-w-full"/>
                     </div>
                 </div>
-                <div class="sm:ml-2 flex-1 box-2 p-4 mt-4 border">
+                <div class="ml-8 flex-1 box-2 p-4 mt-4 border">
                     <div class="flex mb-4">
                         <div class="mr-4">
                             <span class="text-green-400 font-bold text-9xl">10</span>
@@ -196,7 +196,7 @@
     <section id="contact" class="contact-section mt-24 w-full">
         <div class="max-w-2xl p-4 md:p-12 mt-12 mx-auto flex flex-col items-center justify-center">
             <div class="contact-title text-3xl mb-8">Get in Touch - {{ message_name }}</div>
-            <form action="{% url 'home' %}" method="POST" class="w-full max-w-lg">
+            <form action="{% url 'index' %}" method="POST" class="w-full max-w-lg">
                 {% csrf_token %}
                 <div class="mb-4">
                     <input class="appearance-none bg-transparent border-b border-gray-500 w-full py-2 px-4 text-white leading-tight focus:outline-none focus:border-white" name="message-name" type="text" placeholder="Your Name">
@@ -208,7 +208,7 @@
                     <textarea class="appearance-none bg-transparent border-b border-gray-500 w-full py-2 px-4 text-white leading-tight focus:outline-none focus:border-white" name="message" placeholder="Talk to me"></textarea>
                 </div>
                 <div class="flex justify-between mt-8">
-                    <div>
+                    <div class="mb-4">
                         <button class="bg-transparent text-white border border-white py-2 px-4 hover:bg-white hover:text-black" type="submit">Okay!</button>
                     </div>
                     <div class="flex space-x-4">
