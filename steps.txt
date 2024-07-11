@@ -1,0 +1,56 @@
+// set up
+1. install django, pillow
+2. django-admin startproject
+3. cd to project then python3 manage.py startapp main to
+create the main app
+
+
+// Link the main appliction to django project
+1. Go to settings in the django project i.e the one set up with 'django-admin startproject'
+2. Import os, add the name of the app in INSTAlled apps 'main in this case'
+3. scroll to buttom and set media for images: 
+    MEDIA_URL = "/media/"
+        Purpose: Defines the base URL that serves media files uploaded by users.
+        Usage: When a user uploads a file, Django will make it accessible via this URL prefix. For example, if a user uploads a file called image.jpg, it will be accessible at http://yourdomain.com/media/image.jpg.
+        Context: This setting is used primarily in templates to reference media files, e.g., {{ MEDIA_URL }}my_image.jpg.
+    MEDIA_ROOT = OS.PATH.JOIN(BASE_DIR, "media")
+        Purpose: Specifies the filesystem path where media files are stored.
+        Usage: When a user uploads a file, Django will save it in this directory. For example, if the project is located at /home/user/myproject/ and a file is uploaded, it will be saved to /home/user/myproject/media/.
+        BASE_DIR: This is a variable typically defined in the settings.py file that points to the base directory of your project.
+        os.path.join: This function is used to construct a full filesystem path by joining the base directory with the media subdirectory. This ensures that the path is constructed correctly regardless of the operating system.
+
+
+// create database models for storing projects
+    1. Go to models.py in main and create the models
+
+// create the media directory in the portfolio directory
+    - The reason is we already specify the media in the settings.py as 
+    where we will store our images
+    - wathever part we set for the image in our model would be AUTOMATICALLY CREATED
+
+// register your modules in admin.py
+
+// makemigrations and migrate
+    N>B migration files create, db.sqlite created
+
+// createsuperuser
+
+// python3 manage.py runserver
+
+// create your static and templates folder in your project 'main'
+
+// create urls.py, import views from . and include urlpatterns =[]
+
+// create your views in views.py
+
+// link your views to django.urls AND IMPORT STATIC AND settings
+
+
+
+
+
+
+
+
+
+
