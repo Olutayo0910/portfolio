@@ -1,0 +1,108 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Irish+Grover&display=swap');
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    .triangle-bg {
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1400" viewBox="0 0 100 100"><polygon points="-50,30 -50,0 100,0 80,50" fill="%23A9A9A9"/><polygon points="0,0 50,0 100,1000 100,0" fill="%23000"/></svg>');
+    }
+
+    .partial-border {
+        position: relative;
+        border: 2px solid;
+        border-image-slice: 1;
+    }
+
+    .animated-border {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .title, .contact-title {
+        font-family: "Irish Grover", system-ui;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .subtitle, body {
+        font-family: "Roboto", sans-serif;
+        font-weight: 100;
+        font-style: normal;
+    }
+
+    body {
+        background-color: white;
+    }
+
+    .fixed-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .hidden-nav {
+        display: none;
+    }
+
+    .visible-nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .badges-container-wrapper {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .badges-container {
+        display: flex;
+        white-space: nowrap;
+        padding: 30px 0;
+        animation: scroll 20s linear infinite;
+    }
+
+    .badges-container img {
+        margin-right: 20px;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    .box {
+        max-width: 150px;
+        height: 100px;
+        background-color: white;
+        border-color: gray;
+    }
+
+    .box-2 {
+        max-width: 300px;
+        height: 350px;
+    }
+
+    .toggle-bg {
+        background-color: black;
+        color: white;
+    }
+
+    .toggle-bg.light-mode {
+        background-color: white;
+        color: black;
+    }
+
+    .selected-tag {
+        background-color: #3B82F6;
+    }
